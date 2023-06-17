@@ -3,60 +3,48 @@ const balance = document.querySelector('[data-balance]');
 const total = document.querySelector('[data-total]');
 const per = document.querySelector('[data-per]');
 
-const data = [
-    {
-      "day": "mon",
-      "amount": 17.45
-    },
-    {
-      "day": "tue",
-      "amount": 34.91
-    },
-    {
-      "day": "wed",
-      "amount": 52.36
-    },
-    {
-      "day": "thu",
-      "amount": 31.07
-    },
-    {
-      "day": "fri",
-      "amount": 23.39
-    },
-    {
-      "day": "sat",
-      "amount": 43.28
-    },
-    {
-      "day": "sun",
-      "amount": 29.48
-    }
-];
+// read data from ./data.json
+let xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        // parse JSON data
+        const data = JSON.parse(this.responseText);
 
-let max = {
-    index: 0,
-    value: data[0].amount
-};
+        // check if data is complete
+        if(data.length !== 7) {
+            alert("Data is not complete");
+            console.log("Data is not complete");
+            return;
+        }
 
-for(let i = 1; i < data.length; i++) {
-    if(data[i].amount > max.value) {
-        max.index = i;
-        max.value = data[i].amount;
+        // get Max index and value
+        let max = {
+            index: 0,
+            value: data[0].amount
+        };
+        for(let i = 1; i < data.length; i++) {
+            if(data[i].amount > max.value) {
+                max.index = i;
+                max.value = data[i].amount;
+            }
+        }
+
+        // set height of each column
+        for(let i = 0; i < data.length; i++) {
+            setInterval(()=> {
+                cols[i].children[0].style.height = (data[i].amount / max.value * 100) + "%";
+                cols[i].children[1].innerHTML = data[i].day;
+                cols[i].children[0].children[0].innerHTML = "$" + data[i].amount;
+                if(i === max.index)
+                    cols[i].children[0].id = "max";
+                else
+                    cols[i].children[0].id = "";
+            }, 150 * i);
+        }
     }
 }
-
-for(let i = 0; i < data.length; i++) {
-    setInterval(()=> {
-        cols[i].children[0].style.height = (data[i].amount / max.value * 100) + "%";
-        cols[i].children[1].innerHTML = data[i].day;
-        cols[i].children[0].children[0].innerHTML = "$" + data[i].amount;
-        if(i === max.index)
-            cols[i].children[0].id = "max";
-        else
-            cols[i].children[0].id = "";
-    }, 150 * i);
-}
+xhttp.open("GET", "./data.json", true);
+xhttp.send();
 
 // increment balance
 let balanceValue = 0.00;
