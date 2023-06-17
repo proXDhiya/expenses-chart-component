@@ -13,8 +13,11 @@
         <h1>
           My balance
         </h1>
-        <p>
-          $921.48
+        <p data-balance="921.48">
+          $
+          <span>
+            0.00
+          </span>
         </p>
         <img src="./images/logo.svg"/>
       </nav>
@@ -23,17 +26,65 @@
           Spending - Last 7 days
         </h2>
         <div class="graph">
-
+          <div class="col">
+            <div class="bar">
+              <p class="value">-</p>
+            </div>
+            <p>-</p>
+          </div>
+          <div class="col">
+            <div class="bar">
+              <p class="value">-</p>
+            </div>
+            <p>-</p>
+          </div>
+          <div class="col">
+            <div class="bar">
+              <p class="value">-</p>
+            </div>
+            <p>-</p>
+          </div>
+          <div class="col">
+            <div class="bar">
+              <p class="value">-</p>
+            </div>
+            <p>-</p>
+          </div>
+          <div class="col">
+            <div class="bar">
+              <p class="value">-</p>
+            </div>
+            <p>-</p>
+          </div>
+          <div class="col">
+            <div class="bar">
+              <p class="value">-</p>
+            </div>
+            <p>-</p>
+          </div>
+          <div class="col">
+            <div class="bar">
+              <p class="value">-</p>
+            </div>
+            <p>-</p>
+          </div>
         </div>
         <div class="total">
           <h2>
             Total this month
           </h2>
-          <p>
-            $478.33
+          <p data-total="478.33">
+            $
+            <span>
+              0.00
+            </span>
           </p>
-          <p>
-            +2.4%
+          <p data-per="2.4">
+            +
+            <span>
+              0.0
+            </span>
+            %
           </p>
           <p>
             from last month
@@ -41,5 +92,6 @@
         </div>
       </section>
     </main>
+    <script src="./graph.js" />
   </body>
 </html>

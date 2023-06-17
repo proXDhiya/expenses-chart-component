@@ -38,7 +38,7 @@ main {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
     gap: 20px;
-    width: 450px;
+    width: 400px;
     height: auto;
 }
 
@@ -122,10 +122,63 @@ section {
 
 .graph {
     width: 100%;
-    height: 180px;
-    padding: 2rem 0;
+    height: 220px;
+    padding: 2.5rem 0 1rem 0;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr;
+    gap: 12px;
+}
+
+.col {
+    display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
-    gap: 10px;
+    gap: 5px;
+    text-align: center;
+}
+
+.col > div {
+    width: 100%;
+    height: 1%;
+    align-self: end;
+    background-color: var(--soft-red);
+    border-radius: 5px;
+    transition: all 1s;
+}
+
+.col > p {
+    color: var(--medium-brown);
+    font-size: 12px;
+}
+
+.bar {
+    position: relative;
+}
+
+.col:has(:hover) > div > p {
+    display: block;
+}
+
+.value {
+    position: absolute;
+    display: none;
+    top: -30px;
+    left: -15%;
+    width: 130%;
+    font-size: 12px;
+    padding: 4px;
+    background-color: var(--dark-brown);
+    border-radius: 3px;
+    color: white;
+}
+
+#max {
+    background-color: var(--cyan);
+}
+
+@media (max-width: 600px) {
+    main {
+        width: 90%;
+    }
 }
